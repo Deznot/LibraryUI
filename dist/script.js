@@ -136,6 +136,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_classes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/classes */ "./src/js/lib/modules/classes.js");
 /* harmony import */ var _modules_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/actions */ "./src/js/lib/modules/actions.js");
 /* harmony import */ var _modules_attributes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/attributes */ "./src/js/lib/modules/attributes.js");
+/* harmony import */ var _modules_handlers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/handlers */ "./src/js/lib/modules/handlers.js");
+
 
 
 
@@ -157,37 +159,120 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
 
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.on = function (eventName, callback) {
-  if (!eventName || !callback) {
-    return this;
-  }
-
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.html = function (content) {
   for (let i = 0; i < this.length; i++) {
-    this[i].addEventListener(eventName, callback);
-  }
-
-  return this;
-};
-
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.off = function (eventName, callback) {
-  if (!eventName || !callback) {
-    return this;
-  }
-
-  for (let i = 0; i < this.length; i++) {
-    this[i].removeEventListener(eventName, callback);
-  }
-
-  return this;
-};
-
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.click = function (handler) {
-  for (let i = 0; i < this.length; i++) {
-    if (handler) {
-      this[i].addEventListener('click', handler);
+    if (content) {
+      this[i].innerHTML = content;
     } else {
-      this[i].click();
+      return this[i].innerHTML;
     }
+  }
+
+  return this;
+};
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.eq = function (i) {
+  let swap = this[i],
+      objLength = Object.keys(this).length;
+
+  for (let i = 0; i < objLength; i++) {
+    delete this[i];
+  }
+
+  this[0] = swap;
+  this.length = 1;
+  return this;
+};
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.index = function () {
+  let parent = this[0].parentNode,
+      childs = [...parent.children];
+
+  let findMyIndex = index => {
+    return index == this[0];
+  };
+
+  return childs.findIndex(findMyIndex);
+};
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.find = function (selector) {
+  let numberOfItems = 0; //общее количество найденных элеменетов
+
+  let copy = Object.assign({}, this);
+  let counter = 0; //количество новых записанных элементов в this
+
+  for (let i = 0; i < copy.length; i++) {
+    let arr = copy[i].querySelectorAll(selector);
+
+    if (arr.length == 0) {
+      continue;
+    }
+
+    for (let j = 0; j < arr.length; j++) {
+      this[counter] = arr[j];
+      counter++;
+    }
+
+    numberOfItems += arr.length;
+  }
+
+  this.length = numberOfItems;
+  let objLength = Object.keys(this).length;
+
+  for (; numberOfItems < objLength; numberOfItems++) {
+    delete this[numberOfItems];
+  }
+
+  return this;
+};
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.closest = function (selector) {
+  let counter = 0;
+
+  for (let i = 0; i < this.length; i++) {
+    if (this[i].closest(selector) === null) {
+      this[i] = 'empty';
+      counter++;
+    } else {
+      this[i] = this[i].closest(selector);
+      counter++;
+    }
+  }
+
+  let objLength = Object.keys(this).length;
+
+  for (; counter < objLength; counter++) {
+    delete this[counter];
+  }
+
+  return this;
+};
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.siblings = function () {
+  let counter = 0,
+      numbersOfItems = 0,
+      copy = Object.assign({}, this);
+
+  for (let i = 0; i < 1; i++) {
+    let arr = copy[i].parentNode.children;
+
+    for (let j = 0; j < arr.length; j++) {
+      if (copy[i] === arr[j]) {
+        continue; //исключаем из выборки copy[i] элемент чьих соседей мы искали
+      }
+
+      this[counter] = arr[j];
+      counter++;
+    }
+
+    numbersOfItems += arr.length - 1;
+  }
+
+  this.length = numbersOfItems;
+  let objLength = Object.keys(this).length;
+
+  for (; numbersOfItems < objLength; numbersOfItems++) {
+    delete this[numbersOfItems];
   }
 
   return this;
@@ -360,6 +445,56 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.toggle = function () {
 
 /***/ }),
 
+/***/ "./src/js/lib/modules/handlers.js":
+/*!****************************************!*\
+  !*** ./src/js/lib/modules/handlers.js ***!
+  \****************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.on = function (eventName, callback) {
+  if (!eventName || !callback) {
+    return this;
+  }
+
+  for (let i = 0; i < this.length; i++) {
+    this[i].addEventListener(eventName, callback);
+  }
+
+  return this;
+};
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.off = function (eventName, callback) {
+  if (!eventName || !callback) {
+    return this;
+  }
+
+  for (let i = 0; i < this.length; i++) {
+    this[i].removeEventListener(eventName, callback);
+  }
+
+  return this;
+};
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.click = function (handler) {
+  for (let i = 0; i < this.length; i++) {
+    if (handler) {
+      this[i].addEventListener('click', handler);
+    } else {
+      this[i].click();
+    }
+  }
+
+  return this;
+};
+
+/***/ }),
+
 /***/ "./src/js/main.js":
 /*!************************!*\
   !*** ./src/js/main.js ***!
@@ -373,12 +508,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('button').on('click', function () {
-  Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])(this).toggleClass('active');
+  Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('div').eq(1).toggleClass('active');
 });
 Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('img').setAttr('src', 'qweqweqe');
 Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('img').on('click', function () {
   Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])(this).toggleAttr('src', 'Den');
 });
+Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('div').click(function () {
+  console.log(Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])(this).index());
+}); // console.log($('div').find('.more'));
+// console.log($('.some').closest('.findmeq').addClass('qweqw'));
+// console.log($('.some').siblings()); - рассмотреть вариант когда искомый объект не один на странице
+// console.log($('.some').siblings());
 
 /***/ })
 
