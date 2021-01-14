@@ -8,31 +8,91 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="container">
         <button class="btn btn-primary m20" id="first">Fade out first text</button>
         <button class="btn btn-dark" data-count="second">Fade out second</button>
         <button class="btn btn-warning m20">Fade out all text</button>
 
-        <div class="w-500 block-center mt-20">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui non quia a, aliquam illo dolorum. Ducimus, at, incidunt modi iure beatae fuga sequi animi omnis odit amet aspernatur, delectus inventore.
-            Qui, velit maxime. Laboriosam similique deleniti maxime consequatur, adipisci aliquid, eum, porro dignissimos asperiores harum soluta. Veniam impedit quibusdam ut assumenda hic earum, a at. In, maxime harum. Temporibus, repellendus?
-            Laudantium recusandae libero blanditiis neque soluta! In qui doloremque quae commodi, soluta omnis nostrum possimus quasi quidem sit facere, debitis provident unde accusamus nulla consectetur repudiandae itaque neque iure. Iusto.
-            Ducimus, temporibus praesentium odit corporis officia excepturi unde saepe enim totam neque pariatur. Laudantium itaque tenetur, et explicabo a amet fugit doloribus saepe. Quisquam, ducimus labore. Qui rerum molestias vitae!
-            Est nisi aliquid error, itaque deleniti aperiam officia quibusdam animi velit eius sit consequuntur? Debitis voluptatibus reiciendis voluptate at pariatur culpa commodi aut iusto consequuntur minus laborum non, nostrum molestiae.
+        <!-- Dropdown menu -->
+        <div class="wrap d-inlineB"></div>
+        <!-- <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton">Dropdown</button>
+            <div class="dropdown-menu" data-toggle-id="dropdownMenuButton">
+                <a href="#" class="dropdown-item">Action</a>
+                <a href="#" class="dropdown-item">Action#2</a>
+                <a href="#" class="dropdown-item">Action#3</a>
+            </div>
+        </div> -->
+        
+
+        <!-- Card-->
+        <div class="goods d-flex f-space-around">
+            <div class="card">
+                <img class="card-img" src="https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-prince-illustration.jpg" alt="photo">
+                <div class="card-body">
+                    <div class="card-title">Card title</div>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Link to</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-prince-illustration.jpg" alt="photo">
+                <div class="card-body">
+                    <div class="card-title">Card title #2</div>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">Link to</a>
+                </div>
+            </div>
+        </div>
+        <!-- Modal-->
+        <div class="modal" id ="exampleModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button class="close" data-close>
+                        <span>&times;</span>
+                    </button>
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            modal-title
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, officiis. Provident reiciendis odio error et corrupti, pariatur adipisci eligendi magnam ullam sapiente fugit culpa laborum nulla rerum possimus sed asperiores?
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-close>Close</button>
+                        <button class="btn btn-success">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id ="exampleModal2">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button class="close" data-close>
+                        <span>&times;</span>
+                    </button>
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            modal-title#2
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        Lorem ipsum dolor
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-close>Close</button>
+                        <button class="btn btn-success">Save changes</button>
+                    </div>
+                </div>
+            </div>
         </div>
         
-        <div class="w-500 block-center mt-20">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui non quia a, aliquam illo dolorum. Ducimus, at, incidunt modi iure beatae fuga sequi animi omnis odit amet aspernatur, delectus inventore.
-            Qui, velit maxime. Laboriosam similique deleniti maxime consequatur, adipisci aliquid, eum, porro dignissimos asperiores harum soluta. Veniam impedit quibusdam ut assumenda hic earum, a at. In, maxime harum. Temporibus, repellendus?
-            Laudantium recusandae libero blanditiis neque soluta! In qui doloremque quae commodi, soluta omnis nostrum possimus quasi quidem sit facere, debitis provident unde accusamus nulla consectetur repudiandae itaque neque iure. Iusto.
-            Ducimus, temporibus praesentium odit corporis officia excepturi unde saepe enim totam neque pariatur. Laudantium itaque tenetur, et explicabo a amet fugit doloribus saepe. Quisquam, ducimus labore. Qui rerum molestias vitae!
-            Est nisi aliquid error, itaque deleniti aperiam officia quibusdam animi velit eius sit consequuntur? Debitis voluptatibus reiciendis voluptate at pariatur culpa commodi aut iusto consequuntur minus laborum non, nostrum molestiae.
-        </div>
+
     </div>
-
     
-    
-
     <script src='script.js'></script>
 </body>
 </html>

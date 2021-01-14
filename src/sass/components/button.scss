@@ -2,7 +2,7 @@
     display: inline-block;
     padding: 10px 20px;
     border: 1px solid $primary;
-    background-color: transparent;
+    background-color: transparent;//прозрачный задний фон
     border-radius: 4px;
     cursor: pointer;
     color: $dark;
@@ -56,6 +56,8 @@
             background-color: darken($dark,10%);
         }
     }
+    //outline - кнопки без установленного заднего фона, 
+    // если background-color не установле, то он наследуется у родителя
     &-outline-primary{
         border-color: $primary;
         color: #fff;
@@ -90,5 +92,10 @@
         &:hover{
             background-color: $dark;
         }
+    }
+    //класс .btn-block с диcплей block
+    &-block{
+        display: block;
+        width: 100%;
     }
 }

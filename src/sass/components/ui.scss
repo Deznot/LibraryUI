@@ -1,1 +1,5 @@
+//собирает отдельные css модули которые будут импортированы в style.css
 @import './button.scss';
+@import './dropdown.scss';
+@import './card.scss';
+@import './modal.scss';
