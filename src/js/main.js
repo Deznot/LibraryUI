@@ -18,6 +18,41 @@ $('.wrap').html(
 
 $('.dropdown-toggle').dropdown();
 
+$('#trigger').click(()=>$('#trigger').createModal({
+    text: {
+        title: 'Modal title',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, officiis. Provident reiciendis odio error et corrupti, pariatur adipisci eligendi magnam ullam sapiente fugit culpa laborum nulla rerum possimus sed asperiores?'
+    },
+    btns:{
+        count: 3,
+        settings:[
+            [
+                'close',    
+                ['btn-danger','mr-10'],
+                true
+            ],
+            [
+                'Save changes',
+                ['btn-success'],
+                false,
+                ()=>{
+                    alert('Данные сохранены');
+                }
+            ],
+            [
+                'another button',
+                ['btn-warning','ml-10'],
+                false,
+                ()=>{
+                    alert('Hello World');
+                }
+            ]
+        ]
+    }
+}));
+
+{/* <button class="btn btn-danger" data-close>Close</button> */}
+{/* <button class="btn btn-success">Save changes</button> */}
 
 // console.log($('.btn-dark').on('click',()=>{
 //     console.log(this);
