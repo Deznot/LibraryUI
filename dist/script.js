@@ -86,6 +86,37 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/js/lib/components/accordion.js":
+/*!********************************************!*\
+  !*** ./src/js/lib/components/accordion.js ***!
+  \********************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.accordion = function (headActive = "accordion-head--active", contentActive = "accordion-content--active", paddings = 40) {
+  for (let i = 0; i < this.length; i++) {
+    Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).click(() => {
+      Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).toggleClass(headActive);
+      Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i].nextElementSibling).toggleClass(contentActive);
+
+      if (this[i].classList.contains(headActive)) {
+        this[i].nextElementSibling.style.maxHeight = this[i].nextElementSibling.scrollHeight + paddings + 'px';
+      } else {
+        this[i].nextElementSibling.style.maxHeight = "0px";
+      }
+    });
+  }
+};
+
+Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])('.accordion .accordion-head').accordion();
+
+/***/ }),
+
 /***/ "./src/js/lib/components/dropdown.js":
 /*!*******************************************!*\
   !*** ./src/js/lib/components/dropdown.js ***!
@@ -99,6 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  * dropdown - 
+ * что бы не вазникло бага с двойным тоглом, нужно при создании кнопок через js, не захватывать остальные кнопки
  */
 
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.dropdown = function () {
@@ -447,9 +479,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_dropdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/dropdown */ "./src/js/lib/components/dropdown.js");
 /* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/modal */ "./src/js/lib/components/modal.js");
 /* harmony import */ var _components_tab__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/tab */ "./src/js/lib/components/tab.js");
+/* harmony import */ var _components_accordion__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/accordion */ "./src/js/lib/components/accordion.js");
 /**
  * lib добавляет в функцию $ различные методы
  */
+
 
 
 
@@ -646,8 +680,7 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.siblings = function () {
       numbersOfItems = 0,
       copy = Object.assign({}, this);
 
-  for (let i = 0; i < 1; i++) {
-    // i < 1, для того что бы не дублировать соседей
+  for (let i = 0; i < this.length; i++) {
     let arr = copy[i].parentNode.children; // получаем всех детей родителя
 
     for (let j = 0; j < arr.length; j++) {
@@ -1192,7 +1225,7 @@ Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.wrap').html(`
         </div>
     </div>
     `);
-Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.dropdown-toggle').dropdown();
+Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.wrap .dropdown-toggle').dropdown();
 Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#trigger').click(() => Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#trigger').createModal({
   text: {
     title: 'Modal title',

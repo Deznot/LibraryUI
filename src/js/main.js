@@ -16,7 +16,7 @@ $('.wrap').html(
     `
 );
 
-$('.dropdown-toggle').dropdown();
+$('.wrap .dropdown-toggle').dropdown();
 
 $('#trigger').click(()=>$('#trigger').createModal({
     text: {

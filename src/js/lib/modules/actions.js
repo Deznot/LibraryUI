@@ -168,8 +168,7 @@ $.prototype.siblings = function(){
         numbersOfItems = 0,
         copy = Object.assign({},this);
 
-    for(let i = 0; i < 1; i++){
-        // i < 1, для того что бы не дублировать соседей
+    for(let i = 0; i < this.length; i++){
         let arr = copy[i].parentNode.children; // получаем всех детей родителя
 
         for(let j = 0; j < arr.length; j++){

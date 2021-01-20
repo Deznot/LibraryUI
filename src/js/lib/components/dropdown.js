@@ -1,6 +1,7 @@
 import $ from '../core';
 /**
  * dropdown - 
+ * что бы не вазникло бага с двойным тоглом, нужно при создании кнопок через js, не захватывать остальные кнопки
  */
 $.prototype.dropdown = function(){
     for(let i = 0; i < this.length; i++){    
