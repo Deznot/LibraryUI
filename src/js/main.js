@@ -51,6 +51,45 @@ $('#trigger').click(()=>$('#trigger').createModal({
     }
 }));
 
+$('#slider').createCarousel({
+    sliderId :"example",
+    count: 3,
+    settings:[
+        [
+            "https://kg-portal.ru/img/81226/main.jpg",
+            "img"
+        ],
+        [
+            "https://img.gazeta.ru/files3/850/13405850/dt-pic4_zoom-1500x1500-14067.jpg",
+            "img"
+        ],
+        [
+            "https://thumbs.dfs.ivi.ru/storage6/contents/5/8/445ecda81cbf9301ff8461ce755142.jpg/234x360/",
+            "img"
+        ]
+    ]
+});
+
+$('#slider1').createCarousel({
+    sliderId :"example1",
+    count: 3,
+    auto: true,
+    settings:[
+        [
+            "https://kg-portal.ru/img/81226/main.jpg",
+            "img"
+        ],
+        [
+            "https://img.gazeta.ru/files3/850/13405850/dt-pic4_zoom-1500x1500-14067.jpg",
+            "img"
+        ],
+        [
+            "https://thumbs.dfs.ivi.ru/storage6/contents/5/8/445ecda81cbf9301ff8461ce755142.jpg/234x360/",
+            "img"
+        ]
+    ]
+});
+
 {/* <button class="btn btn-danger" data-close>Close</button> */}
 {/* <button class="btn btn-success">Save changes</button> */}
 
