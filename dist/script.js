@@ -1848,7 +1848,9 @@ __webpack_require__.r(__webpack_exports__);
  //data-slide-to - позволяет ориентироваться к какому слайду перемещаться при клике на элемент
 
 /**
- * 
+ * метод carousel - работает с уже готовой html версткой.Отвечает за функциональность слайдера.
+ * @param {*} auto 
+ * @param {*} autoTime 
  */
 
 _core__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.carousel = function (auto = false, autoTime = 3000) {
@@ -1868,8 +1870,10 @@ _core__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.carousel = function (aut
     });
     let offset = 0; //отслеживает какой слайд активный, и на сколько смещать slidesField
 
-    let slideIndex = 0;
-    let paused;
+    let slideIndex = 0; //отслеживает точки
+
+    let paused; //исп для автозапуска слайдера
+
     Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(this[i].querySelector('[data-slide="next"]')).click(e => {
       //привязываем событие клика кнопке next
       e.preventDefault(); //проверяем граничные условия,
@@ -1953,11 +1957,13 @@ _core__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.carousel = function (aut
 /**
  * createCarousel - метод, который создает слайдер на странице, через js;
  * @param {Object} Object с настрйоками, где sliderId - уникальный айди слайдера,
- * count - счетчик слайдов, settings матрица - содержащая в себе ссылку на картинку, и ее alt
+ * count - счетчик слайдов, settings матрица - содержащая в себе ссылку на картинку, и ее alt;
+ * auto - нужно ли автопереключение слайдов, autoTime - время переключения слайдов.
  * {    
  *      sliderId,
  *      count: 3,
  *      auto = true,
+ *      autoTime = 3000,
  *      settings[
  *          [
  *              "https://example.jpg",
@@ -2388,9 +2394,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_tab__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/tab */ "./src/js/lib/components/tab.js");
 /* harmony import */ var _components_accordion__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/accordion */ "./src/js/lib/components/accordion.js");
 /* harmony import */ var _components_carousel__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/carousel */ "./src/js/lib/components/carousel.js");
+/* harmony import */ var _services_requests__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./services/requests */ "./src/js/lib/services/requests.js");
 /**
  * lib добавляет в функцию $ различные методы
  */
+
 
 
 
@@ -3112,6 +3120,75 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.click = function (handle
 
 /***/ }),
 
+/***/ "./src/js/lib/services/requests.js":
+/*!*****************************************!*\
+  !*** ./src/js/lib/services/requests.js ***!
+  \*****************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+/**
+ * метод get - посылает get запросы на сервер.
+ * @param {*} url - адрес сервера
+ * @param {*} dataTypeAnswer - формат ожидаемого ответа от сервера
+ * @example
+ * $().get('https://jsonplaceholder.typicode.com/todos/1')
+ * .then(json => console.log(json));
+ */
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.get = async function (url, dataTypeAnswer = 'json') {
+  let res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+  }
+
+  switch (dataTypeAnswer) {
+    case 'json':
+      return await res.json();
+
+    case 'text':
+      return await res.text();
+
+    case 'bloob':
+      return await res.blob();
+  }
+};
+/**
+ * метод post - отправляет post запросы на сервер.
+ * @param {*} url - адрес сервера
+ * @param {*} data - тело запроса
+ * @param {*} dataTypeAnswer - тип ожидаемого ответа от сервера.
+ * @example
+ * $().post('https://jsonplaceholder.typicode.com/todos/1','123')
+ * .then(text => console.log(text));
+ */
+
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.post = async function (url, data, dataTypeAnswer = 'text') {
+  let res = await fetch(url, {
+    method: "POST",
+    body: data
+  });
+
+  switch (dataTypeAnswer) {
+    case 'json':
+      return await res.json();
+
+    case 'text':
+      return await res.text();
+
+    case 'bloob':
+      return await res.blob();
+  }
+};
+
+/***/ }),
+
 /***/ "./src/js/main.js":
 /*!************************!*\
   !*** ./src/js/main.js ***!
@@ -3160,6 +3237,7 @@ Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#slider1').createCarou
   auto: true,
   settings: [["https://kg-portal.ru/img/81226/main.jpg", "img"], ["https://img.gazeta.ru/files3/850/13405850/dt-pic4_zoom-1500x1500-14067.jpg", "img"], ["https://thumbs.dfs.ivi.ru/storage6/contents/5/8/445ecda81cbf9301ff8461ce755142.jpg/234x360/", "img"]]
 });
+Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])().post('https://jsonplaceholder.typicode.com/todos/1', '123').then(json => console.log(json));
 {
   /* <button class="btn btn-danger" data-close>Close</button> */
 }

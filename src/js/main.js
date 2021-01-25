@@ -90,6 +90,9 @@ $('#slider1').createCarousel({
     ]
 });
 
+$().post('https://jsonplaceholder.typicode.com/todos/1','123')
+  .then(json => console.log(json));
+
 {/* <button class="btn btn-danger" data-close>Close</button> */}
 {/* <button class="btn btn-success">Save changes</button> */}
 

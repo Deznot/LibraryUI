@@ -1,7 +1,9 @@
 import $ from '../core';
 //data-slide-to - позволяет ориентироваться к какому слайду перемещаться при клике на элемент
 /**
- * 
+ * метод carousel - работает с уже готовой html версткой.Отвечает за функциональность слайдера.
+ * @param {*} auto 
+ * @param {*} autoTime 
  */
 $.prototype.carousel = function(auto = false, autoTime = 3000){
     for(let i = 0; i < this.length; i++){
@@ -19,8 +21,8 @@ $.prototype.carousel = function(auto = false, autoTime = 3000){
         });
 
         let offset = 0; //отслеживает какой слайд активный, и на сколько смещать slidesField
-        let slideIndex = 0;
-        let paused;
+        let slideIndex = 0; //отслеживает точки
+        let paused;//исп для автозапуска слайдера
 
         $(this[i].querySelector('[data-slide="next"]')).click((e) => {
             //привязываем событие клика кнопке next
@@ -114,11 +116,13 @@ $.prototype.carousel = function(auto = false, autoTime = 3000){
 /**
  * createCarousel - метод, который создает слайдер на странице, через js;
  * @param {Object} Object с настрйоками, где sliderId - уникальный айди слайдера,
- * count - счетчик слайдов, settings матрица - содержащая в себе ссылку на картинку, и ее alt
+ * count - счетчик слайдов, settings матрица - содержащая в себе ссылку на картинку, и ее alt;
+ * auto - нужно ли автопереключение слайдов, autoTime - время переключения слайдов.
  * {    
  *      sliderId,
  *      count: 3,
  *      auto = true,
+ *      autoTime = 3000,
  *      settings[
  *          [
  *              "https://example.jpg",
